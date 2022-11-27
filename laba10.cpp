@@ -23,6 +23,11 @@ public:
 		return m_name;
 	}
 
+	~Town()
+	{
+		cout << "Город " << m_name << " удален!" << endl;
+	}
+
 };
 
 class Country
@@ -53,6 +58,10 @@ public:
 	}
 
 	~Country() {
+		for (size_t i = 0; i < m_towns.size(); i++)
+		{
+			delete m_towns[i];
+		}
 		m_towns.clear();
 		cout << "Country " << m_name << " deleted\n";
 	}
@@ -93,8 +102,9 @@ int main()
 	country0->PrintTown();
 	country1->PrintTown();
 	country2->PrintTown();
-
 	delete country0;
+	
 	delete country1;
+
 	//Использую связь "Композиция": при удалении страны удаляются и города
 }
